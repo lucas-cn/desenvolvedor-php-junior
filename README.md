@@ -1,7 +1,5 @@
 # Teste - Desenvolvedor Php Júnior
 
-----------
-
 ## Introdução
 Este é um teste que aplicamos na seleção de novos desenvolvedores de nível júnior.  
 O teste consiste no desenvolvimento de um CRUD.
