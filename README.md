@@ -29,7 +29,7 @@ O teste consiste no desenvolvimento de um CRUD.
 - Listar os usuários cadastrados
 	- Ao clicar em um usuário, redirecionar para uma tela com as informações do mesmo
 - Editar os dados do usuário
-- Deletar usuários a partir da tela de listagem ou de edição 
+- Deletar usuários a partir da tela de listagem ou de edição usando ajax 
 
 
 ## O que avaliamos
