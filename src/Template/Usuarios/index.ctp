@@ -4,45 +4,45 @@
  * @var \App\Model\Entity\Usuario[]|\Cake\Collection\CollectionInterface $usuarios
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-1 medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Usuario'), ['action' => 'add']) ?></li>
+        <li class="heading"><?= __('Ações') ?></li>
+        <li><a href="/usuarios/add"><i class="fas fa-plus" style="margin-right: 1px;"></i>Novo Usuario</a></li>
     </ul>
 </nav>
-<div class="usuarios index large-9 medium-8 columns content">
-    <h3><?= __('Usuarios') ?></h3>
+<div class="usuarios index large-11 medium-10 columns content">
+    <h3><?= __('Lista de Usuarios') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id_usuario') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cpf') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nascimento') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('telefone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('endereco') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_cidade') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_estado') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col">Nome</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Data Nascimento</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col" class="actions">Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($usuarios as $usuario): ?>
             <tr>
-                <td><?= $this->Number->format($usuario->id_usuario) ?></td>
-                <td><?= h($usuario->nome) ?></td>
-                <td><?= h($usuario->cpf) ?></td>
-                <td><?= h($usuario->nascimento) ?></td>
-                <td><?= h($usuario->email) ?></td>
-                <td><?= $this->Number->format($usuario->telefone) ?></td>
-                <td><?= h($usuario->endereco) ?></td>
-                <td><?= $this->Number->format($usuario->id_cidade) ?></td>
-                <td><?= $this->Number->format($usuario->id_estado) ?></td>
+                <td><?= $usuario->nome ?></td>
+                <td class="cpf"><?= $usuario->cpf ?></td>
+                <td><?= $usuario->nascimento->format('d/m/Y'); ?></td>
+                <td><?= $usuario->email ?></td>
+                <td class="telefone"><?= $usuario->telefone ?></td>
+                <td><?= $usuario->endereco ?></td>
+                <td><?= $usuario->Estado?$usuario->Estado->estado:"" ?></td>
+                <td><?= $usuario->Cidade?$usuario->Cidade->cidade:"" ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $usuario->id_usuario]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usuario->id_usuario]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usuario->id_usuario], ['confirm' => __('Are you sure you want to delete # {0}?', $usuario->id_usuario)]) ?>
+                    <a href="/usuarios/view/<?= $usuario->id_usuario ?>"><i class="fas fa-eye" style="margin-right: 5px;"></i>Vizualizar Usuario</a>
+                    <br>
+                    <a href="/usuarios/edit/<?= $usuario->id_usuario ?>"><i class="fas fa-edit" style="margin-right: 5px;"></i>Editar Usuario</a>
+                    <br>
+                    <span class="btn_del"><i class="fas fa-trash" style="margin-right: 5px;"></i><?= $this->Form->postLink('Editar', ['action' => 'delete', $usuario->id_usuario], ['confirm' => __('Deletar usuario "'.$usuario->nome.'"?', $usuario->id_usuario)]) ?></span>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -51,11 +51,10 @@
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
+            <?= $this->Paginator->numbers()?$this->Paginator->numbers():0 ?>
+            <?= $this->Paginator->next(__('proxima') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>

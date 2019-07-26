@@ -33,6 +33,9 @@ class UsuariosTable extends Table
         $this->setTable('usuarios');
         $this->setDisplayField('id_usuario');
         $this->setPrimaryKey('id_usuario');
+        $this->hasOne('Estados')->setName('Estado');
+        $this->hasOne('Cidades')->setName('Cidade');
+
     }
 
     /**
