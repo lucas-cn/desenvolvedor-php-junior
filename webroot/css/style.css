@@ -522,3 +522,8 @@ table td {
     vertical-align: top;
     word-break: break-all;
 }
+
+.btn_del a,
+.btn_del {
+    color: #be140b !important;
+}
