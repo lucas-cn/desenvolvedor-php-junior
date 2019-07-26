@@ -63,11 +63,11 @@ class UsuariosController extends AppController
             $usuario            = $this->Usuarios->patchEntity($usuario, $dados);
             
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Usuario salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('Erro ao salvar o usuario. Tente novamente mais tarde.'));
         }
         $this->set(compact('usuario', 'estados', 'cidades'));
     }
@@ -96,11 +96,11 @@ class UsuariosController extends AppController
             $usuario            = $this->Usuarios->patchEntity($usuario, $dados);
 
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Usuario salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('Erro ao salvar o usuario. Tente novamente mais tarde.'));
         }
         $this->set(compact('usuario', 'estados', 'cidades'));
     }
@@ -117,9 +117,9 @@ class UsuariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $usuario = $this->Usuarios->get($id);
         if ($this->Usuarios->delete($usuario)) {
-            $this->Flash->success(__('The usuario has been deleted.'));
+            $this->Flash->success(__('Usuario deletado.'));
         } else {
-            $this->Flash->error(__('The usuario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Erro ao deletar usuario. Tente novamente mais tarde.'));
         }
 
         return $this->redirect(['action' => 'index']);
