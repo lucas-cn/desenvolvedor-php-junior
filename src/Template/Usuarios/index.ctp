@@ -7,7 +7,11 @@
 <nav class="large-1 medium-2 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Ações') ?></li>
-        <li><a href="/usuarios/add"><i class="fas fa-plus" style="margin-right: 1px;"></i>Novo Usuario</a></li>
+        <li>
+            <div>
+                <a class="btn" href="/usuarios/add"><i class="fas fa-plus" style="margin-right: 5px;"></i>Novo Usuario</a>
+            </div>
+        </li>
     </ul>
 </nav>
 <div class="usuarios index large-11 medium-10 columns content">
@@ -35,14 +39,14 @@
                 <td><?= $usuario->email ?></td>
                 <td class="telefone"><?= $usuario->telefone ?></td>
                 <td><?= $usuario->endereco ?></td>
-                <td><?= $usuario->Estado?$usuario->Estado->estado:"" ?></td>
-                <td><?= $usuario->Cidade?$usuario->Cidade->cidade:"" ?></td>
+                <td><?= $usuario->estado?$usuario->estado['estado']:"" ?></td>
+                <td><?= $usuario->cidade?$usuario->cidade['cidade']:"" ?></td>
                 <td class="actions">
                     <a href="/usuarios/view/<?= $usuario->id_usuario ?>"><i class="fas fa-eye" style="margin-right: 5px;"></i>Vizualizar Usuario</a>
                     <br>
                     <a href="/usuarios/edit/<?= $usuario->id_usuario ?>"><i class="fas fa-edit" style="margin-right: 5px;"></i>Editar Usuario</a>
                     <br>
-                    <span class="btn_del"><i class="fas fa-trash" style="margin-right: 5px;"></i><?= $this->Form->postLink('Editar', ['action' => 'delete', $usuario->id_usuario], ['confirm' => __('Deletar usuario "'.$usuario->nome.'"?', $usuario->id_usuario)]) ?></span>
+                    <span class="btn_del"><i class="fas fa-trash" style="margin-right: 5px;"></i><?= $this->Form->postLink('Deletar', ['action' => 'delete', $usuario->id_usuario], ['confirm' => __('Deletar usuario "'.$usuario->nome.'"?', $usuario->id_usuario)]) ?></span>
                 </td>
             </tr>
             <?php endforeach; ?>

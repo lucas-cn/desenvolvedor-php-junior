@@ -31,9 +31,21 @@ class CidadesTable extends Table
         parent::initialize($config);
 
         $this->setTable('cidades');
-        $this->setDisplayField('id_cidade');
+        $this->setDisplayField('cidade');
         $this->setPrimaryKey('id_cidade');
-        $this->hasOne('Estados')->setName('Estado');
+        
+        $this->belongsToMany('Usuarios', [
+            'className' => 'Usuarios',
+            'foreignKey' => 'id_estado',
+            'bindingKey' => 'id_estado'
+        ]);
+
+        $this->hasOne('Estados', [
+            'className' => 'Estados',
+            'foreignKey' => 'id_estado',
+            'bindingKey' => 'id_estado'
+        ]);
+
     }
 
     /**

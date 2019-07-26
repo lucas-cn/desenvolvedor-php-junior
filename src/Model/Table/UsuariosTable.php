@@ -33,8 +33,18 @@ class UsuariosTable extends Table
         $this->setTable('usuarios');
         $this->setDisplayField('id_usuario');
         $this->setPrimaryKey('id_usuario');
-        $this->hasOne('Estados')->setName('Estado');
-        $this->hasOne('Cidades')->setName('Cidade');
+
+        $this->hasOne('Estados', [
+            'className' => 'Estados',
+            'foreignKey' => 'id_estado',
+            'bindingKey' => 'id_estado'
+        ]);
+
+        $this->hasOne('Cidades', [
+            'className' => 'Cidades',
+            'foreignKey' => 'id_cidade',
+            'bindingKey' => 'id_cidade'
+        ]);
 
     }
 
@@ -52,30 +62,24 @@ class UsuariosTable extends Table
 
         $validator
             ->scalar('nome')
-            ->maxLength('nome', 100)
-            ->allowEmptyString('nome');
+            ->maxLength('nome', 100);
 
         $validator
             ->scalar('cpf')
-            ->maxLength('cpf', 11)
-            ->allowEmptyString('cpf');
+            ->maxLength('cpf', 11);
 
         $validator
-            ->date('nascimento')
-            ->allowEmptyDate('nascimento');
+            ->date('nascimento');
 
         $validator
-            ->email('email')
-            ->allowEmptyString('email');
+            ->email('email');
 
         $validator
-            ->integer('telefone')
-            ->allowEmptyString('telefone');
+            ->scalar('telefone');
 
         $validator
             ->scalar('endereco')
-            ->maxLength('endereco', 255)
-            ->allowEmptyString('endereco');
+            ->maxLength('endereco', 255);
 
         $validator
             ->integer('id_cidade')
@@ -97,7 +101,7 @@ class UsuariosTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['cpf']));
 
         return $rules;
     }

@@ -523,7 +523,14 @@ table td {
     word-break: break-all;
 }
 
+.btn {
+    display: inline-table !important;
+    padding: 0 !important;
+}
+
 .btn_del a,
 .btn_del {
+    display: inline-table !important;
     color: #be140b !important;
+    padding: 0 !important;
 }
